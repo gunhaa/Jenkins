@@ -74,7 +74,7 @@ pipeline {
             branch 'production'
                               // app_env가 prod이면, stage를 실행해라 라는 스크립트
             environment name: 'APP_ENV', value: 'prod'
-            anyof {
+            anyOf {
               environment name: 'DEPLOY_TO', value: 'production'
               environment name: 'DEPLOY_TO', value: 'staging'
             }
