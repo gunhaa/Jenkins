@@ -72,13 +72,18 @@ pipeline {
           when {
             // 이 브랜치가 prod이고,
             branch 'production'
-                              // app_env가 prod이면, stage를 실행해라 라는 스크립트
+            // app_env가 prod이면, stage를 실행해라 라는 스크립트
             environment name: 'APP_ENV', value: 'prod'
             anyOf {
               environment name: 'DEPLOY_TO', value: 'production'
               environment name: 'DEPLOY_TO', value: 'staging'
             }
           }
+          // when 절 뒤엔 steps가 필수이다.
+         steps {
+            echo 'This is a production-specific stage'
+            // 추가적인 스텝을 여기에 넣으면 됨
+    }
         }
         
         // aws s3 에 파일을 올림
